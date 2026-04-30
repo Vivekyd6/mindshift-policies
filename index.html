@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — MindShift</title>
+<meta name="description" content="MindShift privacy policy. No data collected, no network access, no analytics. Everything stays on your device.">
+<meta name="theme-color" content="#002B5B">
+
+<style>
+  :root {
+    --primary: #002B5B;
+    --primary-deep: #001736;
+    --primary-muted: #D6E3FF;
+    --backdrop: #FBF9F9;
+    --backdrop-deep: #F5F3F3;
+    --surface: #FFFFFF;
+    --border: #DBE2EF;
+    --border-strong: #C4C6D0;
+    --text-primary: #1B1C1C;
+    --text-secondary: #43474F;
+    --text-muted: #747780;
+    --success: #0E9F6E;
+    --info: #3F72AF;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--backdrop);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+    color: #fff;
+    padding: 48px 24px 56px;
+  }
+
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.18);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #E2EBFF;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .brand-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #7FB3FF;
+    box-shadow: 0 0 0 4px rgba(127,179,255,0.18);
+  }
+
+  h1.hero-title {
+    margin: 22px 0 8px;
+    font-size: 38px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-sub {
+    margin: 0;
+    font-size: 17px;
+    color: #C9D5EC;
+    max-width: 560px;
+  }
+
+  .meta {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 13px;
+    color: #A6B6D4;
+  }
+
+  .meta strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  main {
+    max-width: 760px;
+    margin: -28px auto 64px;
+    padding: 0 20px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow:
+      0 1px 2px rgba(0,43,91,0.04),
+      0 14px 40px rgba(0,43,91,0.06);
+    overflow: hidden;
+  }
+
+  .summary {
+    background: var(--primary-muted);
+    border-bottom: 1px solid var(--border);
+    padding: 22px 28px;
+  }
+
+  .summary-title {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-deep);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(0,43,91,0.18);
+    font-size: 15px;
+  }
+
+  .summary-row:last-child { border-bottom: 0; }
+
+  .summary-row .q { color: var(--primary-deep); font-weight: 500; }
+  .summary-row .a {
+    font-weight: 700;
+    color: var(--primary);
+    white-space: nowrap;
+  }
+
+  .body {
+    padding: 28px 28px 32px;
+  }
+
+  h2 {
+    margin: 32px 0 10px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--primary-deep);
+    scroll-margin-top: 16px;
+  }
+
+  h2:first-child { margin-top: 4px; }
+
+  h3 {
+    margin: 22px 0 8px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  p { margin: 10px 0; color: var(--text-secondary); }
+
+  p strong, li strong { color: var(--text-primary); }
+
+  ul {
+    padding-left: 22px;
+    margin: 10px 0;
+  }
+
+  li { margin: 6px 0; color: var(--text-secondary); }
+
+  a {
+    color: var(--info);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(63,114,175,0.4);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  a:hover {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14.5px;
+    background: var(--surface);
+  }
+
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--backdrop-deep);
+    color: var(--primary-deep);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  tr:last-child td { border-bottom: 0; }
+
+  code {
+    background: var(--backdrop-deep);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    color: var(--primary-deep);
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+  }
+
+  .contact {
+    margin-top: 24px;
+    padding: 20px 22px;
+    background: var(--backdrop-deep);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+
+  .contact h2 { margin-top: 0; }
+
+  .contact-email {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 10px 18px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 999px;
+    font-weight: 600;
+    border: 0;
+  }
+
+  .contact-email:hover {
+    background: var(--primary-deep);
+    color: #fff;
+    border: 0;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin: 28px 0 0;
+  }
+
+  /* Tablet + desktop tweaks */
+  @media (min-width: 720px) {
+    .hero { padding: 64px 24px 80px; }
+    h1.hero-title { font-size: 46px; }
+    .summary-grid { grid-template-columns: 1fr 1fr; gap: 6px 28px; }
+    main { margin-top: -44px; }
+    .body { padding: 36px 40px 40px; }
+    .summary { padding: 26px 40px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    a { transition: none; }
+  }
+</style>
+</head>
+
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <span class="brand"><span class="brand-dot"></span>MindShift</span>
+    <h1 class="hero-title">Privacy Policy</h1>
+    <p class="hero-sub">
+      MindShift is built so that <strong style="color:#fff;">no personal data ever
+      leaves your device</strong>. This page explains, in plain language, what the
+      app does and does not handle.
+    </p>
+    <div class="meta">
+      <span><strong>Last updated:</strong> 30 April 2026</span>
+      <span><strong>Effective date:</strong> 30 April 2026</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="card">
+    <section class="summary">
+      <div class="summary-title">At a glance</div>
+      <div class="summary-grid">
+        <div class="summary-row">
+          <span class="q">Personal data collected?</span>
+          <span class="a">No</span>
+        </div>
+        <div class="summary-row">
+          <span class="q">Sends data over the internet?</span>
+          <span class="a">No</span>
+        </div>
+        <div class="summary-row">
+          <span class="q">Analytics or advertising?</span>
+          <span class="a">No</span>
+        </div>
+        <div class="summary-row">
+          <span class="q">Shared with third parties?</span>
+          <span class="a">No</span>
+        </div>
+        <div class="summary-row">
+          <span class="q">Reads your screen content?</span>
+          <span class="a">No</span>
+        </div>
+        <div class="summary-row">
+          <span class="q">Logs keystrokes?</span>
+          <span class="a">No</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="body">
+      <h2>1. Who we are</h2>
+      <p>
+        MindShift (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;the app&rdquo;)
+        is operated by Vivek Yadav. This policy describes what information the
+        app handles, why, and what choices you have.
+      </p>
+
+      <h2>2. What the app does</h2>
+      <p>
+        MindShift helps you reduce time spent in distracting apps by requiring
+        you to solve a chess puzzle before the chosen app opens. You select
+        which apps are &ldquo;guarded&rdquo;. When you tap one of them, MindShift
+        presents a chess puzzle. After you solve it (or tap &ldquo;Give up&rdquo;),
+        the guarded app opens.
+      </p>
+      <p>
+        To make this work, the app needs to know <strong>which app you just
+        tried to open</strong>. Android&rsquo;s only supported way to detect this
+        from the background is the AccessibilityService API.
+      </p>
+
+      <h2>3. Information the app processes</h2>
+      <p>
+        All of the items below stay on your device. None are transmitted to us
+        or any third party.
+      </p>
+
+      <h3>3.1 Foreground app package names</h3>
+      <p>
+        When you open an app on your phone, Android tells our
+        AccessibilityService the <strong>package name</strong> (for example,
+        <code>com.instagram.android</code>). The service checks whether you have
+        marked this package as guarded. If yes, it shows a challenge. If no, it
+        ignores the event.
+      </p>
+      <p>
+        The app <strong>does not read</strong> screen contents, text fields,
+        notifications, keystrokes, or any other accessibility event data beyond
+        the package name.
+      </p>
+
+      <h3>3.2 List of installed apps</h3>
+      <p>
+        To let you choose which apps to guard, MindShift reads the list of apps
+        installed on your device using Android&rsquo;s
+        <code>QUERY_ALL_PACKAGES</code> permission. The list is shown to you on
+        the &ldquo;Guarded apps&rdquo; screen and is never sent anywhere.
+      </p>
+
+      <h3>3.3 Local challenge history</h3>
+      <p>
+        When you complete or give up on a challenge, MindShift writes a row
+        into a local SQLite database stored only on your device. Each row
+        contains:
+      </p>
+      <ul>
+        <li>The package name of the guarded app</li>
+        <li>Which challenge type fired (currently always &ldquo;chess puzzle&rdquo;)</li>
+        <li>Outcome: <code>completed</code> or <code>gaveUp</code></li>
+        <li>How long the challenge took, in milliseconds</li>
+        <li>A timestamp</li>
+      </ul>
+      <p>
+        This history powers the in-app <strong>Stats</strong> screen. It is
+        never uploaded.
+      </p>
+
+      <h3>3.4 Your settings</h3>
+      <p>
+        Your guarded-app selection, chess difficulty level, puzzle count, and
+        similar preferences are stored locally (in the app&rsquo;s private
+        storage and in the same SQLite database as above).
+      </p>
+
+      <h2>4. Permissions and why we need them</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th>Why it&rsquo;s requested</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>BIND_ACCESSIBILITY_SERVICE</code></td>
+            <td>Detect the package name of the app you just opened.</td>
+          </tr>
+          <tr>
+            <td><code>FOREGROUND_SERVICE</code> /<br><code>FOREGROUND_SERVICE_SPECIAL_USE</code></td>
+            <td>Keep the guard alive while you use other apps.</td>
+          </tr>
+          <tr>
+            <td><code>POST_NOTIFICATIONS</code></td>
+            <td>Display the persistent guard-active notification.</td>
+          </tr>
+          <tr>
+            <td><code>QUERY_ALL_PACKAGES</code></td>
+            <td>Show your installed apps so you can pick which to guard.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        We do <strong>not</strong> request internet access, location, contacts,
+        camera, microphone, storage, SMS, call log, or any other permission.
+      </p>
+
+      <h2>5. Network usage</h2>
+      <p>
+        MindShift&rsquo;s Android manifest declares
+        <code>usesCleartextTraffic=&quot;false&quot;</code> and ships an empty
+        network-security configuration. The app does not make HTTP requests to
+        our servers, to Lichess, to Google, or to any other host while running.
+      </p>
+      <p>
+        The chess puzzles displayed in the app are bundled into the app at
+        build time from Lichess&rsquo;s public CC0 puzzle dataset. No live API
+        calls are made.
+      </p>
+
+      <h2>6. Third parties</h2>
+      <p>
+        MindShift contains <strong>no analytics SDKs, no advertising SDKs, and
+        no crash-reporting SDKs</strong>. We do not use Google Firebase, Google
+        Analytics, Meta SDKs, AppsFlyer, Adjust, RevenueCat, or any similar
+        service in this release.
+      </p>
+      <p>
+        <em>(If a future release adds a paid subscription, we will integrate
+        Google Play Billing and may add RevenueCat for entitlement management.
+        This policy will be updated <strong>before</strong> that release ships
+        and the integration will only run if you choose to subscribe.)</em>
+      </p>
+      <p>
+        The app uses two pieces of third-party <strong>content</strong> under
+        open licences:
+      </p>
+      <ul>
+        <li>
+          <strong>Chess piece artwork</strong>: adapted from &ldquo;Chess
+          kdt45&rdquo; by Cburnett, licensed under
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA 3.0</a>.
+          Attribution is shown in the app&rsquo;s &ldquo;About&rdquo; screen.
+        </li>
+        <li>
+          <strong>Chess puzzles</strong>: from the Lichess open puzzle database,
+          released under CC0 (public domain).
+        </li>
+      </ul>
+      <p>
+        Neither of these involves any data exchange &mdash; the assets are
+        bundled at build time.
+      </p>
+
+      <h2>7. Children</h2>
+      <p>
+        MindShift is not directed at children under 13. We do not knowingly
+        collect any data from children, because we do not collect any data from
+        anyone.
+      </p>
+
+      <h2>8. Data retention and deletion</h2>
+      <p>Because all data is stored only on your device:</p>
+      <ul>
+        <li>You can delete it at any time by clearing the app&rsquo;s storage
+            in Android Settings or by uninstalling MindShift.</li>
+        <li><strong>Uninstalling the app removes everything</strong> &mdash;
+            challenge history, guarded-app list, and settings.</li>
+        <li>We have no remote copy of your data because we never receive it.</li>
+      </ul>
+
+      <h2>9. Security</h2>
+      <p>
+        Local data lives in MindShift&rsquo;s private app sandbox, which is
+        protected by the standard Android app-isolation model. Other apps on
+        your phone cannot read it. Because nothing is transmitted, there is no
+        &ldquo;in-transit&rdquo; data to encrypt.
+      </p>
+
+      <h2>10. Your rights</h2>
+      <p>
+        Since we hold no personal data about you, the GDPR / DPDP / CCPA right
+        to access, correct, port, or delete your data is satisfied by
+        controlling the data on your own device. Uninstalling MindShift
+        fulfills the right to erasure in full.
+      </p>
+
+      <h2>11. Sensitive data we do not handle</h2>
+      <ul>
+        <li>Children&rsquo;s data (the app is not directed at children).</li>
+        <li>Health data.</li>
+        <li>Government or biometric IDs.</li>
+        <li>Financial or payment data (the current release has no payments).</li>
+        <li>SMS, call logs, contacts, location, or media.</li>
+      </ul>
+
+      <h2>12. Changes to this policy</h2>
+      <p>
+        If this policy materially changes, the <strong>Last updated</strong>
+        date above will move forward and the change will be summarised in the
+        app&rsquo;s release notes on Google Play. Continued use of the app
+        after a change means you accept the updated policy.
+      </p>
+
+      <div class="contact">
+        <h2 id="contact">13. Contact</h2>
+        <p>For privacy questions or concerns, email us. We aim to respond within 7 working days.</p>
+        <a class="contact-email" href="mailto:vivekyadav36837@gmail.com">vivekyadav36837@gmail.com</a>
+      </div>
+    </section>
+  </article>
+
+  <footer>
+    &copy; <span id="year"></span> MindShift. Friction before distraction.
+  </footer>
+</main>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
