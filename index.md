@@ -1,6 +1,6 @@
 # Privacy Policy for MindShift
 
-**Last updated:** 30 April 2026
+**Last updated:** 1 May 2026
 **Effective date:** 30 April 2026
 
 MindShift ("we", "our", or "the app") is operated by Vivek Yadav. This
@@ -53,10 +53,12 @@ keystrokes, or any other accessibility event data beyond the package
 name.
 
 ### 3.2 List of installed apps
-To let you choose which apps to guard, MindShift reads the list of apps
-installed on your device using Android's `QUERY_ALL_PACKAGES` permission.
-The list is shown to you on the "Guarded apps" screen and is never sent
-anywhere.
+To let you choose which apps to guard, MindShift reads the list of
+**launchable** apps on your device - i.e., apps that have a normal home-screen
+launcher icon. This is done through Android's standard package-visibility
+`<queries>` mechanism (`ACTION_MAIN` + `CATEGORY_LAUNCHER`); MindShift does
+**not** request the broad `QUERY_ALL_PACKAGES` permission. The list is shown
+to you only on the "Guarded apps" screen and is never sent anywhere.
 
 ### 3.3 Local challenge history
 When you complete or give up on a challenge, MindShift writes a row into
@@ -83,7 +85,7 @@ in the same SQLite database as above).
 | `BIND_ACCESSIBILITY_SERVICE`        | Detect the package name of the app you just opened.   |
 | `FOREGROUND_SERVICE` / `_SPECIAL_USE` | Keep the guard alive while you use other apps.       |
 | `POST_NOTIFICATIONS`                | Display the persistent guard-active notification.     |
-| `QUERY_ALL_PACKAGES`                | Show your installed apps so you can pick which to guard. |
+| Package-visibility `<queries>` block | Discover launchable apps so you can pick which to guard. (We do NOT use the broad `QUERY_ALL_PACKAGES` permission.) |
 
 We do **not** request internet access, location, contacts, camera,
 microphone, storage, SMS, call log, or any other permission.

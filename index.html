@@ -309,7 +309,7 @@
       app does and does not handle.
     </p>
     <div class="meta">
-      <span><strong>Last updated:</strong> 30 April 2026</span>
+      <span><strong>Last updated:</strong> 1 May 2026</span>
       <span><strong>Effective date:</strong> 30 April 2026</span>
     </div>
   </div>
@@ -391,10 +391,16 @@
 
       <h3>3.2 List of installed apps</h3>
       <p>
-        To let you choose which apps to guard, MindShift reads the list of apps
-        installed on your device using Android&rsquo;s
-        <code>QUERY_ALL_PACKAGES</code> permission. The list is shown to you on
-        the &ldquo;Guarded apps&rdquo; screen and is never sent anywhere.
+        To let you choose which apps to guard, MindShift reads the list of
+        <strong>launchable</strong> apps on your device &mdash; i.e., apps
+        that have a normal home-screen launcher icon. This is done through
+        Android&rsquo;s standard package-visibility
+        <code>&lt;queries&gt;</code> mechanism
+        (<code>ACTION_MAIN</code> + <code>CATEGORY_LAUNCHER</code>); MindShift
+        does <strong>not</strong> request the broad
+        <code>QUERY_ALL_PACKAGES</code> permission. The list is shown to you
+        only on the &ldquo;Guarded apps&rdquo; screen and is never sent
+        anywhere.
       </p>
 
       <h3>3.3 Local challenge history</h3>
@@ -444,8 +450,12 @@
             <td>Display the persistent guard-active notification.</td>
           </tr>
           <tr>
-            <td><code>QUERY_ALL_PACKAGES</code></td>
-            <td>Show your installed apps so you can pick which to guard.</td>
+            <td>Package-visibility <code>&lt;queries&gt;</code> block</td>
+            <td>
+              Discover launchable apps so you can pick which to guard.
+              We do <strong>not</strong> use the broad
+              <code>QUERY_ALL_PACKAGES</code> permission.
+            </td>
           </tr>
         </tbody>
       </table>
