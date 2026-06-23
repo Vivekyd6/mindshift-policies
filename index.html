@@ -309,7 +309,7 @@
       app does and does not handle.
     </p>
     <div class="meta">
-      <span><strong>Last updated:</strong> 1 May 2026</span>
+      <span><strong>Last updated:</strong> 23 June 2026</span>
       <span><strong>Effective date:</strong> 30 April 2026</span>
     </div>
   </div>
@@ -367,6 +367,53 @@
         To make this work, the app needs to know <strong>which app you just
         tried to open</strong>. Android&rsquo;s only supported way to detect this
         from the background is the AccessibilityService API.
+      </p>
+
+      <h2>2A. How the AccessibilityService API is used</h2>
+      <p>
+        MindShift uses the AccessibilityService API to power the following
+        user-facing features. The user explicitly enables the service after
+        seeing an in-app prominent-disclosure modal that lists these same
+        features and the exact data accessed.
+      </p>
+
+      <h3>Feature 1 &mdash; Guarded apps (chess-puzzle block)</h3>
+      <p>
+        When the user opens an app on their block list (e.g. Instagram,
+        TikTok, YouTube, X, Reddit, Facebook), the service detects the launch
+        via <code>AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED</code> and
+        overlays a chess puzzle from the bundled Lichess library. The user
+        must solve the puzzle before the guarded app becomes usable. This is
+        the core feature of MindShift and cannot work without the
+        Accessibility API &mdash; no other Android API gives a third-party
+        app real-time foreground-app events.
+      </p>
+
+      <h3>Feature 2 &mdash; Access-window enforcement</h3>
+      <p>
+        After the puzzle is solved, the guarded app unlocks for a
+        user-configured time window (default 5 minutes). The same
+        launch-detection signal is used to re-challenge the user on the next
+        open after the window expires, instead of allowing unlimited
+        re-entry.
+      </p>
+
+      <h3>Feature 3 &mdash; Guard status indicator</h3>
+      <p>
+        The home screen, the &ldquo;accessibility off&rdquo; banner, and the
+        foreground notification all reflect whether the service is currently
+        bound and able to observe app launches.
+      </p>
+
+      <h3>Data this service reads</h3>
+      <p>
+        <strong>Only</strong> the package name of the foreground app
+        (e.g. <code>com.instagram.android</code>). The service does
+        <strong>not</strong> read screen content, text the user types,
+        passwords, messages, notifications, browsing history, or any other
+        accessibility event payload. The app has <strong>no
+        <code>INTERNET</code> permission</strong> declared in
+        <code>AndroidManifest.xml</code> &mdash; nothing leaves the device.
       </p>
 
       <h2>3. Information the app processes</h2>
@@ -451,11 +498,7 @@
           </tr>
           <tr>
             <td>Package-visibility <code>&lt;queries&gt;</code> block</td>
-            <td>
-              Discover launchable apps so you can pick which to guard.
-              We do <strong>not</strong> use the broad
-              <code>QUERY_ALL_PACKAGES</code> permission.
-            </td>
+            <td>Discover launchable apps so you can pick which to guard. We do <strong>not</strong> use the broad <code>QUERY_ALL_PACKAGES</code> permission.</td>
           </tr>
         </tbody>
       </table>
@@ -468,8 +511,11 @@
       <p>
         MindShift&rsquo;s Android manifest declares
         <code>usesCleartextTraffic=&quot;false&quot;</code> and ships an empty
-        network-security configuration. The app does not make HTTP requests to
-        our servers, to Lichess, to Google, or to any other host while running.
+        network-security configuration. The only outbound network calls the
+        app makes are to <strong>Google Firebase Crashlytics</strong> to
+        upload crash reports &mdash; see Section 6 below. No other host is
+        contacted at runtime. The app does not call our servers, Lichess, or
+        any analytics or advertising endpoint.
       </p>
       <p>
         The chess puzzles displayed in the app are bundled into the app at
@@ -479,16 +525,30 @@
 
       <h2>6. Third parties</h2>
       <p>
-        MindShift contains <strong>no analytics SDKs, no advertising SDKs, and
-        no crash-reporting SDKs</strong>. We do not use Google Firebase, Google
-        Analytics, Meta SDKs, AppsFlyer, Adjust, RevenueCat, or any similar
-        service in this release.
+        MindShift contains <strong>no analytics SDKs and no advertising
+        SDKs</strong>. We do not use Google Analytics, Meta SDKs, AppsFlyer,
+        Adjust, or any similar tracking service.
       </p>
+      <p>The app uses one third-party SDK at runtime:</p>
+      <ul>
+        <li>
+          <strong>Google Firebase Crashlytics</strong> receives anonymous
+          crash reports (stack trace, device model, OS version, app version)
+          when the app crashes. No personal data, no user content, and no
+          identifiers tied to you are included. Crash reporting is
+          automatically disabled in debug builds and is the only network
+          call the app makes. See Google&rsquo;s
+          <a href="https://firebase.google.com/support/privacy">Crashlytics data handling notice</a>
+          for what Google does with that data.
+        </li>
+      </ul>
       <p>
-        <em>(If a future release adds a paid subscription, we will integrate
-        Google Play Billing and may add RevenueCat for entitlement management.
-        This policy will be updated <strong>before</strong> that release ships
-        and the integration will only run if you choose to subscribe.)</em>
+        <strong>Not currently used.</strong> In-app purchases are scaffolded
+        in the codebase but disabled in this release (the
+        <code>ENABLE_PAYMENTS</code> build flag is off). No Google Play
+        Billing calls or purchase events occur at runtime. This policy will
+        be updated and re-dated <strong>before</strong> payments are enabled
+        in a future release.
       </p>
       <p>
         The app uses two pieces of third-party <strong>content</strong> under
@@ -544,7 +604,8 @@
         fulfills the right to erasure in full.
       </p>
 
-      <h2>11. Sensitive data we do not handle</h2>
+      <h2>11. Children&rsquo;s data, sensitive data, financial data</h2>
+      <p>MindShift does not handle any of the following:</p>
       <ul>
         <li>Children&rsquo;s data (the app is not directed at children).</li>
         <li>Health data.</li>

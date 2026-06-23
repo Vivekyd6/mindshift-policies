@@ -1,6 +1,6 @@
 # Privacy Policy for MindShift
 
-**Last updated:** 1 May 2026
+**Last updated:** 23 June 2026
 **Effective date:** 30 April 2026
 
 MindShift ("we", "our", or "the app") is operated by Vivek Yadav. This
@@ -34,6 +34,43 @@ opens.
 To make this work, the app needs to know **which app you just tried to
 open**. Android's only supported way to detect this from the background
 is the AccessibilityService API.
+
+---
+
+## 2A. How the AccessibilityService API is used
+
+MindShift uses the AccessibilityService API to power the following
+user-facing features. The user explicitly enables the service after
+seeing an in-app prominent-disclosure modal that lists these same
+features and the exact data accessed.
+
+### Feature 1 — Guarded apps (chess-puzzle block)
+When the user opens an app on their block list (e.g. Instagram, TikTok,
+YouTube, X, Reddit, Facebook), the service detects the launch via
+`AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED` and overlays a chess
+puzzle from the bundled Lichess library. The user must solve the puzzle
+before the guarded app becomes usable. This is the core feature of
+MindShift and cannot work without the Accessibility API — no other
+Android API gives a third-party app real-time foreground-app events.
+
+### Feature 2 — Access-window enforcement
+After the puzzle is solved, the guarded app unlocks for a user-configured
+time window (default 5 minutes). The same launch-detection signal is
+used to re-challenge the user on the next open after the window expires,
+instead of allowing unlimited re-entry.
+
+### Feature 3 — Guard status indicator
+The home screen, the "accessibility off" banner, and the foreground
+notification all reflect whether the service is currently bound and
+able to observe app launches.
+
+### Data this service reads
+**Only** the package name of the foreground app (e.g.
+`com.instagram.android`). The service does **not** read screen content,
+text the user types, passwords, messages, notifications, browsing
+history, or any other accessibility event payload. The app has **no
+`INTERNET` permission** declared in `AndroidManifest.xml` — nothing
+leaves the device.
 
 ---
 
@@ -95,9 +132,11 @@ microphone, storage, SMS, call log, or any other permission.
 ## 5. Network usage
 
 MindShift's Android manifest declares `usesCleartextTraffic="false"` and
-ships an empty network-security configuration. The app does not make
-HTTP requests to our servers, to Lichess, to Google, or to any other
-host while running.
+ships an empty network-security configuration. The only outbound network
+calls the app makes are to **Google Firebase Crashlytics** to upload
+crash reports - see Section 6 below. No other host is contacted at
+runtime. The app does not call our servers, Lichess, or any analytics
+or advertising endpoint.
 
 The chess puzzles displayed in the app are bundled into the app at build
 time from Lichess's public CC0 puzzle dataset. No live API calls are
@@ -107,15 +146,25 @@ made.
 
 ## 6. Third parties
 
-MindShift contains **no analytics SDKs, no advertising SDKs, and no
-crash-reporting SDKs**. We do not use Google Firebase, Google Analytics,
-Meta SDKs, AppsFlyer, Adjust, RevenueCat, or any similar service in this
-release.
+MindShift contains **no analytics SDKs and no advertising SDKs**. We do
+not use Google Analytics, Meta SDKs, AppsFlyer, Adjust, or any similar
+tracking service.
 
-(If a future release adds a paid subscription, we will integrate Google
-Play Billing and may add RevenueCat for entitlement management. This
-policy will be updated **before** that release ships and the integration
-will only run if you choose to subscribe.)
+The app uses one third-party SDK at runtime:
+
+- **Google Firebase Crashlytics** receives anonymous crash reports
+  (stack trace, device model, OS version, app version) when the app
+  crashes. No personal data, no user content, and no identifiers tied
+  to you are included. Crash reporting is automatically disabled in
+  debug builds and is the only network call the app makes. See Google's
+  [Crashlytics data handling notice](https://firebase.google.com/support/privacy)
+  for what Google does with that data.
+
+**Not currently used.** In-app purchases are scaffolded in the codebase
+but disabled in this release (the `ENABLE_PAYMENTS` build flag is off).
+No Google Play Billing calls or purchase events occur at runtime. This
+policy will be updated and re-dated **before** payments are enabled in a
+future release.
 
 The app uses two pieces of third-party **content** under open licences:
 
